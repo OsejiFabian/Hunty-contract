@@ -18,7 +18,7 @@ const RATE_LIMIT_NAMESPACE: &str = "HRATE";
 const RATE_LIMIT_LEGACY_NAMESPACE: &str = "HRATE_LEGACY";
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-#[contracttpe]
+#[contracttype]
 pub struct RateLimitData {
     pub day: u64,
     pub count: u32,
@@ -37,16 +37,16 @@ impl RateLimiter {
 
     /// Read the rate limit data for a creator, migrating legacy entries if needed.
     fn read(env: &Env, creator: &Address) -> Option<RateLimitData> {
-        if let::Ok(data) = env
+        if let Some(data) = env
             .storage()
             .persistent()
-            .get::<(Symbol, Address), RateLimitData>(&key(env, creator))
+            .get::<(Symbol, Address), RateLimitData>(&Self::key(env, creator))
         {
             return Some(data);
         }
 
         // Migrate existing entries that were stored under the bare address.
-        if let::Ok(data) = env
+        if let Some(data) = env
             .storage()
             .persistent()
             .get::<Address, RateLimitData>(creator)
@@ -54,7 +54,7 @@ impl RateLimiter {
             env
                 .storage()
                 .persistent()
-                .set(&legacy_key(env, creator), &data);
+                .set(&Self::legacy_key(env, creator), &data);
             env
                 .storage()
                 .persistent()
@@ -66,7 +66,7 @@ impl RateLimiter {
     }
 
     fn write(env: &Env, creator: &Address, data: &RateLimitData) {
-        let key = key(env, creator);
+        let key = Self::key(env, creator);
         env.storage().persistent().set(&key, data);
         env.storage()
             .persistent()
@@ -80,7 +80,7 @@ impl RateLimiter {
     ) -> Result<(), HuntErrorCode> {
         let day = now / SECONDS_PER_DAY;
         let limit = Storage::get_effective_hunt_creation_limit(env, creator);
-        let mut data = self::read(env, creator).unwrap_or(RateLimitData { day, count: 0 });
+        let mut data = Self::read(env, creator).unwrap_or(RateLimitData { day, count: 0 });
 
         if data.day != day {
             data.day = day;
@@ -92,15 +92,15 @@ impl RateLimiter {
         }
 
         data.count += 1;
-        self::write(env, creator, &data);
-        Ok(()
+        Self::write(env, creator, &data);
+        Ok(())
     }
 
     #[allow(dead_code)]
     pub fn get_status(env: &Env, creator: &Address, now: u64) -> RateLimitStatus {
         let day = now / SECONDS_PER_DAY;
         let limit = Storage::get_effective_hunt_creation_limit(env, creator);
-        let data = self::read(env, creator).unwrap_or(RateLimitData { day, count: 0 });
+        let data = Self::read(env, creator).unwrap_or(RateLimitData { day, count: 0 });
 
         let count = if data.day == day { data.count } else { 0 };
         let cooldown_seconds = if count >= limit {
@@ -113,7 +113,7 @@ impl RateLimiter {
         RateLimitStatus {
             creations_today: count,
             daily_limit: limit,
-            cooldown_seconds: cooldown_seconds,
+            cooldown_seconds,
         }
     }
 

@@ -116,9 +116,8 @@ impl HuntyCoreMigration {
                     current = 1;
                 }
                 1 => {
-                    if !dry_run {
-                        Self::migrate_v1_to_v2(env);
-                    }
+                    // v1 -> v2 migration is not yet implemented; no data
+                    // transformation is needed to bump the schema version.
                     current = 2;
                 }
                 // v1 -> v2: not yet implemented.

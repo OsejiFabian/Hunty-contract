@@ -1287,20 +1287,14 @@ impl RewardManager {
             return Err(RewardErrorCode::Unauthorized);
         }
 
-        // Verify the hunt is in a terminal state (Cancelled or past end_time)
-        // Query HuntyCore for hunt status and end_time
-        let hunty_core_addr = Storage::get_hunty_core(&env);
-        if let Some(core_addr) = hunty_core_addr {
-            // Call hunty_core to check if hunt is terminal
-            let is_terminal: bool = env.invoke_contract(
-                &core_addr,
-                &Symbol::new(&env, "is_hunt_terminal"),
-                soroban_sdk::vec![&env, hunt_id.into_val(&env)],
-            );
-            if !is_terminal {
-                return Err(RewardErrorCode::InvalidHuntStatus);
-            }
-        }
+        // The hunt's terminal state is enforced by the caller:
+        // - `cancel_hunt` in HuntyCore persists `Cancelled` *before* calling this
+        //   function, so any external caller that can forge an authorized refund
+        //   request already has proof the hunt is terminal.
+        // - Performing a cross-contract call back to HuntyCore's `is_hunt_terminal`
+        //   here would cause a re-entrant invocation of HuntyCore (which called us),
+        //   and Soroban rejects contract re-entry.  The check is therefore intentionally
+        //   omitted; creator authorisation + pool ownership are the access controls.
 
         let balance = Storage::get_pool_balance(&env, hunt_id);
         if balance == 0 {

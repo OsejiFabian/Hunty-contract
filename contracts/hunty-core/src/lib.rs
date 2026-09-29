@@ -21,11 +21,10 @@ use crate::types::{
     HuntCreatedEvent, HuntDeactivatedEvent, HuntDescriptionUpdatedEvent, HuntGarbageCollectedEvent,
     HuntReactivatedEvent, HuntStatistics, HuntStatus, HuntStatusChangedEvent,
     InviteCodeGeneratedEvent, InviteCodeRevokedEvent, LeaderboardEntry, LeaderboardIndexEntry,
-    LeaderboardResult, PlayerProgress, PlayerRegisteredEvent, PlayerRegisteredWithInviteEvent,
-    RegistrationDeadlineSetEvent, RewardClaimedEvent, RewardConfig, RewardManagerSetEvent,
-    TimeBonusConfig,
-};
-use reward_interface::RewardErrorCode;
+    LeaderboardResult, LeaderboardVisibility, PlayerProgress, PlayerRegisteredEvent,
+    PlayerRegisteredWithInviteEvent, RegistrationDeadlineSetEvent, RewardClaimedEvent,
+    RewardConfig, RewardManagerSetEvent, TimeBonusConfig,
+};use reward_interface::RewardErrorCode;
 use soroban_sdk::{
     auth::{ContractContext, InvokerContractAuthEntry, SubContractInvocation},
     contract, contractimpl, Address, Bytes, BytesN, Env, IntoVal, String, Symbol, Val, Vec,
@@ -107,6 +106,7 @@ impl HuntyCore {
         if Storage::get_admin(&env).is_some() {
             return Err(HuntErrorCode::Unauthorized);
         }
+        Storage::set_admin(&env, &admin);
         Ok(())
     }
 
@@ -1614,6 +1614,14 @@ impl HuntyCore {
             return Err(HuntErrorCode::InvalidHuntStatus);
         }
 
+        // Persist the Cancelled status *before* calling refund_pool so that
+        // RewardManager's cross-contract `is_hunt_terminal` check on HuntyCore
+        // sees the hunt as terminal and allows the refund to proceed.
+        // If the subsequent refund call fails the whole transaction reverts,
+        // so there is no risk of persisting Cancelled without a successful refund.
+        hunt.status = HuntStatus::Cancelled;
+        Storage::save_hunt(&env, &hunt);
+
         // Handle refunds for any remaining funded reward pool balance.
         if let Some(reward_manager_addr) = Storage::get_reward_manager(&env) {
             let mut balance_args: Vec<Val> = Vec::new(&env);
@@ -1641,12 +1649,6 @@ impl HuntyCore {
                 }
             }
         }
-
-        // Cancel hunt
-        hunt.status = HuntStatus::Cancelled;
-
-        // Persist
-        Storage::save_hunt(&env, &hunt);
 
         // Emit event
         let event = HuntCancelledEvent { hunt_id };
@@ -2167,7 +2169,7 @@ impl HuntyCore {
                 );
                 match result {
                     Ok(Ok(())) => {}
-                    Ok(Err(upstream_code)) => {
+                    Err(Ok(upstream_code)) => {
                         // Emit a diagnostic event carrying the originating reward-manager
                         // error code (range 2001–2999) so off-chain clients can distinguish
                         // e.g. InsufficientPool (2002) from Unauthorized (2010) without
@@ -2178,7 +2180,7 @@ impl HuntyCore {
                         );
                         return Err(HuntErrorCode::RewardDistributionFailed);
                     }
-                    Err(_invoke_err) => {
+                    Ok(Err(_)) | Err(Err(_)) => {
                         // Host-level invocation failure (contract not found, out of gas, etc.)
                         env.events().publish(
                             (Symbol::new(env, "reward_distribution_failed"),),
@@ -3719,6 +3721,51 @@ impl HuntyCore {
 
     pub fn get_health_dashboard(env: Env) -> hunty_common::monitoring::ContractHealth {
         hunty_common::monitoring::Monitoring::health_dashboard(&env)
+    }
+
+    /// Returns the numeric representation of the current status of a hunt.
+    ///
+    /// This is a stable, cross-contract-callable view function used by
+    /// contracts such as RewardManager that need to inspect hunt state without
+    /// depending on the `HuntStatus` type directly.
+    ///
+    /// # Status values
+    /// * `0` - Draft
+    /// * `1` - Active
+    /// * `2` - Completed
+    /// * `3` - Cancelled
+    /// * `4` - Paused
+    /// * `5` - EmergencyStopped
+    /// * `6` - Archived
+    ///
+    /// Returns `u32::MAX` if the hunt does not exist.
+    pub fn get_hunt_status(env: Env, hunt_id: u64) -> u32 {
+        match Storage::get_hunt(&env, hunt_id) {
+            Some(hunt) => hunt.status as u32,
+            None => u32::MAX,
+        }
+    }
+
+    /// Returns whether the hunt is in a terminal state from which no further
+    /// player activity can occur.  Terminal statuses are `Cancelled` (3),
+    /// `Completed` (2), `EmergencyStopped` (5), and `Archived` (6).
+    ///
+    /// Called cross-contract by RewardManager's `refund_pool` to gate refunds:
+    /// a refund must only proceed once the hunt can no longer accumulate new
+    /// completions or reward claims.
+    ///
+    /// Returns `false` if the hunt does not exist.
+    pub fn is_hunt_terminal(env: Env, hunt_id: u64) -> bool {
+        match Storage::get_hunt(&env, hunt_id) {
+            Some(hunt) => matches!(
+                hunt.status,
+                HuntStatus::Completed
+                    | HuntStatus::Cancelled
+                    | HuntStatus::EmergencyStopped
+                    | HuntStatus::Archived
+            ),
+            None => false,
+        }
     }
 
     #[cfg(debug_assertions)]

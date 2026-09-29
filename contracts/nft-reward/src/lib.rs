@@ -1,1 +1,612 @@
-dXNlIGNvc213YXNtX3N0ZDo6ewogICAgZW50cnlfcG9pbnQsIHRvX2pzb25fYmluYXJ5LCBBZGRyLCBCaW5hcnksIERlcHMsIERlcHNNdXQsIEVudiwgTWVzc2FnZUluZm8sIE9yZGVyLCBSZXNwb25zZSwKICAgIFN0ZFJlc3VsdCwgU3RvcmFnZSwgVWludDEyOCwKfTsKdXNlIGN3X3N0b3JhZ2VfcGx1czo6e0JvdW5kLCBJdGVtLCBNYXB9OwoKcHViIGNvbnN0IE1BWF9TQ0FOX0xJTUlUOiB1MzIgPSAxMDA7CnB1YiBjb25zdCBERUZBVUxUX0xJTUlUOiB1MzIgPSAxMDsKCiNbY3dfc2VyZGVdCnB1YiBzdHJ1Y3QgSW5zdGFudGlhdGVNc2cgewogICAgcHViIGFkbWluOiBPcHRpb248U3RyaW5nPiwKfQoKI1tjd19zZXJkZV0KcHViIGVudW0gRXhlY3V0ZU1zZyB7CiAgICBNaW50IHsKICAgICAgICB0b2tlbl9pZDogU3RyaW5nLAogICAgICAgIG93bmVyOiBTdHJpbmcsCiAgICAgICAgbWV0YWRhdGE6IFN0cmluZywKICAgIH0sCiAgICBVcGRhdGVNZXRhZGF0YSB7CiAgICAgICAgdG9rZW5faWQ6IFN0cmluZywKICAgICAgICBtZXRhZGF0YTogU3RyaW5nLAogICAgfSwKICAgIFRyYW5zZmVyIHsKICAgICAgICB0b2tlbl9pZDogU3RyaW5nLAogICAgICAgIHJlY2lwaWVudDogU3RyaW5nLAogICAgfSwKfQoKI1tjd19zZXJkZV0KI1tkZXJpdmUoUXVlcnlSZXNwb25zZXMpXQpwdWIgZW51bSBRdWVyeU1zZyB7CiAgICAjW3JldHVybnMoTmZ0UmVzcG9uc2UpXQogICAgTmZ0IHsgdG9rZW5faWQ6IFN0cmluZyB9LAogICAgI1tyZXR1cm5zKE5mdExpc3RSZXNwb25zZSldCiAgICBMaXN0TmZ0cyB7CiAgICAgICAgc3RhcnRfYWZ0ZXI6IE9wdGlvbjxTdHJpbmc+LAogICAgICAgIGxpbWl0OiBPcHRpb248dTMyPiwKICAgIH0sCiAgICAjW3JldHVybnMoU2VhcmNoUmVzcG9uc2UpXQogICAgU2VhcmNoTmZ0c0J5TWV0YWRhdGEgewogICAgICAgIG1ldGFkYXRhOiBTdHJpbmcsCiAgICAgICAgc3RhcnRfYWZ0ZXI6IE9wdGlvbjxTdHJpbmc+LAogICAgICAgIGxpbWl0OiBPcHRpb248dTMyPiwKICAgIH0sCn0KCiNbY3dfc2VyZGVdCnB1YiBzdHJ1Y3QgTmZ0UmVjb3JkIHsKICAgIHB1YiB0b2tlbl9pZDogU3RyaW5nLAogICAgcHViIG93bmVyOiBBZGRyLAogICAgcHViIG1ldGFkYXRhOiBTdHJpbmcsCn0KCiNbY3dfc2VyZGVdCnB1YiBzdHJ1Y3QgTmZ0UmVzcG9uc2UgewogICAgcHViIG5mdDogTmZ0UmVjb3JkLAp9CgojW2N3X3NlcmRlXQpwdWIgc3RydWN0IE5mdExpc3RSZXNwb25zZSB7CiAgICBwdWIgbmZ0czogVmVjPE5mdFJlY29yZD4sCn0KCiNbY3dfc2VyZGVdCnB1YiBzdHJ1Y3QgU2VhcmNoUmVzcG9uc2UgewogICAgcHViIG5mdHM6IFZlYzxOZnRSZWNvcmQ+LAogICAgLy8vIEN1cnNvciB0byBwYXNzIGFzIGBzdGFydF9hZnRlcmAgaW4gdGhlIG5leHQgY2FsbC4gYE5vbmVgIG1lYW5zIHRoZQogICAgLy8vIHNjYW4gaGFzIHJlYWNoZWQgdGhlIGVuZCBvZiB0aGUgY29sbGVjdGlvbi4KICAgIHB1YiBuZXh0X2N1cnNvcjogT3B0aW9uPFN0cmluZz4sCn0KCnB1YiBjb25zdCBBRE1JTjogSXRlbTxBZGRyPiA9IEl0ZW06Om5ldygiYWRtaW4iKTsKcHViIGNvbnN0IE5GVFM6IE1hcDwmU3RyLCBOZnRSZWNvcmQ+ID0gTWFwOjpuZXcoIm5mdHMiKTsKCiNbZW50cnlfcG9pbnRdCnB1YiBmbiBpbnN0YW50aWF0ZSgKICAgIGRlcHM6IERlcHNNdXQsCiAgICBfZW52OiBFbnYsCiAgICBpbmZvOiBNZXNzYWdlSW5mbywKICAgIG1zZzogSW5zdGFudGlhdGVNc2csCikgLT4gU3RkUmVzdWx0PFJlc3BvbnNlPiB7CiAgICBsZXQgYWRtaW4gPSBtYXRjaCBtc2cuYWRtaW4gewogICAgICAgIFNvbWUoYSkgPT4gZGVwcy5hcGkuYWRkcl92YWxpZGF0ZSgmYSk/LAogICAgICAgIE5vbmUgPT4gaW5mby5zZW5kZXIsCiAgICB9OwogICAgQURNSU4uc2F2ZShkZXBzLnN0b3JhZ2UsICZhZG1pbik/OwogICAgT2s oUmVzcG9uc2U6Om5ldygpLmFkZF9hdHRyaWJ1dGUoImFjdGlvbiIsICJpbnN0YW50aWF0ZSIpKQp9CgojW2VudHJ5X3BvaW50XQpwdWIgZm4gZXhlY3V0ZSgKICAgIGRlcHM6IERlcHNNdXQsCiAgICBfZW52OiBFbnYsCiAgICBpbmZvOiBNZXNzYWdlSW5mbywKICAgIG1zZzogRXhlY3V0ZU1zZywKKSAtPiBTdGRSZXN1bHQ8UmVzcG9uc2U+IHsKICAgIG1hdGNoIG1zZyB7CiAgICAgICAgRXhlY3V0ZU1zZzo6TWludCB7CiAgICAgICAgICAgIHRva2VuX2lkLAogICAgICAgICAgICBvd25lciwKICAgICAgICAgICAgbWV0YWRhdGEsCiAgICAgICAgfSA9PiBleGVjdXRlX21pbnQoZGVwcywgaW5mbywgdG9rZW5faWQsIG93bmVyLCBtZXRhZGF0YSksCiAgICAgICAgRXhlY3V0ZU1zZzo6VXBkYXRlTWV0YWRhdGEgeyB0b2tlbl9pZCwgbWV0YWRhdGEgfSA9PiB7CiAgICAgICAgICAgIGV4ZWN1dGVfdXBkYXRlX21ldGFkYXRhKGRlcHMsIGluZm8sIHRva2VuX2lkLCBtZXRhZGF0YSkKICAgICAgICB9CiAgICAgICAgRXhlY3V0ZU1zZzo6VHJhbnNmZXIgeyB0b2tlbl9pZCwgcmVjaXBpZW50IH0gPT4gewogICAgICAgICAgICBleGVjdXRlX3RyYW5zZmVyKGRlcHMsIGluZm8sIHRva2VuX2lkLCByZWNpcGllbnQpCiAgICAgICAgfQogICAgfQp9CgpmbiBleGVjdXRlX21pbnQoCiAgICBkZXBzOiBEZXBzTXV0LAogICAgaW5mbzogTWVzc2FnZUluZm8sCiAgICB0b2tlbl9pZDogU3RyaW5nLAogICAgb3duZXI6IFN0cmluZywKICAgIG1ldGFkYXRhOiBTdHJpbmcsCikgLT4gU3RkUmVzdWx0PFJlc3BvbnNlPiB7CiAgICBpZiBORlRTLm1heV9sb2FkKGRlcHMuc3RvcmFnZSwgJnRva2VuX2lkKT8uaXNfc29tZSgpIHsKICAgICAgICByZXR1cm4gRXJyKGNvc213YXNtX3N0ZDo6U3RkRXJyb3I6OmdlbmVyaWNfZXJyKCJ0b2tlbiBhbHJlYWR5IGV4aXN0cyIpKTsKICAgIH0KICAgIGxldCBvd25lcl9hZGRyID0gZGVwcy5hcGkuYWRkcl92YWxpZGF0ZSgmb3duZXIpPzsKICAgIGxldCByZWNvcmQgPSBOZnRSZWNvcmQgewogICAgICAgIHRva2VuX2lkOiB0b2tlbl9pZC5jbG9uZSgpLAogICAgICAgIG93bmVyOiBvd25lcl9hZGRyLAogICAgICAgIG1ldGFkYXRhLAogICAgfTsKICAgIE5GVFMuc2F2ZShkZXBzLnN0b3JhZ2UsICZ0b2tlbl9pZCwgJnJlY29yZCk/OwogICAgT2s oUmVzcG9uc2U6Om5ldygpCiAgICAgICAgLmFkZF9hdHRyaWJ1dGUoImFjdGlvbiIsICJtaW50IikKICAgICAgICAuYWRkX2F0dHJpYnV0ZSgidG9rZW5faWQiLCB0b2tlbl9pZCkKICAgICAgICAuYWRkX2F0dHJpYnV0ZSgic2VuZGVyIiwgaW5mby5zZW5kZXIpKQp9CgpmbiBleGVjdXRlX3VwZGF0ZV9tZXRhZGF0YSgKICAgIGRlcHM6IERlcHNNdXQsCiAgICBpbmZvOiBNZXNzYWdlSW5mbywKICAgIHRva2VuX2lkOiBTdHJpbmcsCiAgICBtZXRhZGF0YTogU3RyaW5nLAopIC0+IFN0ZFJlc3VsdDxSZXNwb25zZT4gewogICAgbGV0IG11dCByZWNvcmQgPSBORlRTLmxvYWQoZGVwcy5zdG9yYWdlLCAmdG9rZW5faWQpPzsKICAgIGlmIHJlY29yZC5vd25lciAhPSBpbmZvLnNlbmRlciB7CiAgICAgICAgcmV0dXJuIEVycihjb3Ntd2FzbV9zdGQ6OlN0ZEVycm9yOjpnZW5lcmljX2VycigidW5hdXRob3JpemVkIikpOwogICAgfQogICAgcmVjb3JkLm1ldGFkYXRhID0gbWV0YWRhdGE7CiAgICBORlRTLnNhdmUoZGVwcy5zdG9yYWdlLCAmdG9rZW5faWQsICZyZWNvcmQpPzsKICAgIE9r oUmVzcG9uc2U6Om5ldygpCiAgICAgICAgLmFkZF9hdHRyaWJ1dGUoImFjdGlvbiIsICJ1cGRhdGVfbWV0YWRhdGEiKQogICAgICAgIC5hZGRfYXR0cmlidXRlKCJ0b2tlbl9pZCIsIHRva2VuX2lkKSkKfQoKZm4gZXhlY3V0ZV90cmFuc2ZlcigKICAgIGRlcHM6IERlcHNNdXQsCiAgICBpbmZvOiBNZXNzYWdlSW5mbywKICAgIHRva2VuX2lkOiBTdHJpbmcsCiAgICByZWNpcGllbnQ6IFN0cmluZywKKSAtPiBTdGRSZXN1bHQ8UmVzcG9uc2U+IHsKICAgIGxldCBtdXQgcmVjb3JkID0gTkZUcy5sb2FkKGRlcHMuc3RvcmFnZSwgJnRva2VuX2lkKT87CiAgICBpZiByZWNvcmQub3duZXIgIT0gaW5mby5zZW5kZXIgewogICAgICAgIHJldHVybiBFcnIoY29zbXdhc21fc3RkOjpTdGRFcnJvcjo6Z2VuZXJpY19lcnIoInVuYXV0aG9yaXplZCIpKTsKICAgIH0KICAgIHJlY29yZC5vd25lciA9IGRlcHMuYXBpLmFkZHJfdmFsaWRhdGUoJnJlY2lwaWVudCk/OwogICAgTkZUcy5zYXZlKGRlcHMuc3RvcmFnZSwgJnRva2VuX2lkLCAmcmVjb3JkKT87CiAgICBPayhSZXNwb25zZTo6bmV3KCkKICAgICAgICAuYWRkX2F0dHJpYnV0ZSgiYWN0aW9uIiwgInRyYW5zZmVyIikKICAgICAgICAuYWRkX2F0dHJpYnV0ZSgidG9rZW5faWQiLCB0b2tlbl9pZCkpCn0KCiNbZW50cnlfcG9pbnRdCnB1YiBmbiBxdWVyeShkZXBzOiBEZXBzLCBfZW52OiBFbnYsIG1zZzogUXVlcnlNc2cpIC0+IFN0ZFJlc3VsdDxCaW5hcnk+IHsKICAgIG1hdGNoIG1zZyB7CiAgICAgICAgUXVlcnlNc2c6Ok5mdCB7IHRva2VuX2lkIH0gPT4gdG9fanNvbl9iaW5hcnkoJnF1ZXJ5X25mdChkZXBzLCB0b2tlbl9pZCk/KSwKICAgICAgICBRdWVyeU1zZzo6TGlzdE5mdHMgeyBzdGFydF9hZnRlciwgbGltaXQgfSA9PiB7CiAgICAgICAgICAgIHRvX2pzb25fYmluYXJ5KCZxdWVyeV9saXN0X25mdHMoZGVwcywgc3RhcnRfYWZ0ZXIsIGxpbWl0KT8pCiAgICAgICAgfQogICAgICAgIFF1ZXJ5TXNnOjpTZWFyY2hOZnRzQnlNZXRhZGF0YSB7CiAgICAgICAgICAgIG1ldGFkYXRhLAogICAgICAgICAgICBzdGFydF9hZnRlciwKICAgICAgICAgICAgbGltaXQsCiAgICAgICAgfSA9PiB0b19qc29uX2JpbmFyeSgmc2VhcmNoX25mdHNfYnlfbWV0YWRhdGEoCiAgICAgICAgICAgIGRlcHMsCiAgICAgICAgICAgIG1ldGFkYXRhLAogICAgICAgICAgICBzdGFydF9hZnRlciwKICAgICAgICAgICAgbGltaXQsCiAgICAgICAgKT8pLAogICAgfQp9CgpmbiBxdWVyeV9uZnQoZGVwczogRGVwcywgdG9rZW5faWQ6IFN0cmluZykgLT4gU3RkUmVzdWx0PE5mdFJlc3BvbnNlPiB7CiAgICBsZXQgbmZ0ID0gTkZUcy5sb2FkKGRlcHMuc3RvcmFnZSwgJnRva2VuX2lkKT87CiAgICBPayhOZnRSZXNwb25zZSB7IG5mdCB9KQp9CgpmbiBxdWVyeV9saXN0X25mdHMoCiAgICBkZXBzOiBEZXBzLAogICAgc3RhcnRfYWZ0ZXI6IE9wdGlvbjxTdHJpbmc+LAogICAgbGltaXQ6IE9wdGlvbjx1MzI+LAopIC0+IFN0ZFJlc3VsdDxOZnRMaXN0UmVzcG9uc2U+IHsKICAgIGxldCBsaW1pdCA9IGxpbWl0LnVud3JhcF9vcihERUZBVUxUX0xJTUlUKS5taW4oTUFYX1NDQU5fTElNSVQpIGFzIHVzaXplOwogICAgbGV0IHN0YXJ0ID0gc3RhcnRfYWZ0ZXIuYXNfZGVyKCkubWFwKEJvdW5kOjpleGNsdXNpdmUpOwogICAgbGV0IG5mdHM6IFZlYzxOZnRSZWNvcmQ+ID0gTkZUcwogICAgICAgIC5yYW5nZShkZXBzLnN0b3JhZ2UsIHN0YXJ0LCBOb25lLCBPcmRlcjo6QXNjZW5kaW5nKQogICAgICAgIC50YWtlKGxpbWl0KQogICAgICAgIC5tYXAofHJ8IHIubWFwKHwoXywgdil8IHYpKQogICAgICAgIC5jb2xsZWN0Ojo8U3RkUmVzdWx0PF8+PigpPzsKICAgIE9rKE5mdExpc3RSZXNwb25zZSB7IG5mdHMgfSkKfQoKLy8vIFNlYXJjaCBORlRzIGJ5IG1ldGFkYXRhLCBzY2FubmluZyBhdCBtb3N0IGBNQVhfU0NBTl9MSU1JVGAgcmVjb3JkcyBwZXIgY2FsbC4KLy8vCi8vLyBUaGUgc2NhbiBzdGFydHMgYWZ0ZXIgYHN0YXJ0X2FmdGVyYCAoZXhjbHVzaXZlKSBhbmQgd2Fsa3MgdGhlIGNvbGxlY3Rpb24gaW4KLy8vIGFzY2VuZGluZyB0b2tlbi1pZCBvcmRlci4gSXQgc3RvcHMgZWFybHkgb25jZSBgbGltaXRgIG1hdGNoZXMgaGF2ZSBiZWVuCi8vLyBjb2xsZWN0ZWQsIG9yIG9uY2UgYE1BWF9TQ0FOX0xJTUlUYCByZWNvcmRzIGhhdmUgYmVlbiBleGFtaW5lZCDigJQgd2hpY2hldmVyCi8vLyBjb21lcyBmaXJzdC4KLy8vCi8vLyBgbmV4dF9jdXJzb3JgIGlzIGBTb21lKHRva2VuX2lkKWAgd2hlbiB0aGUgc2NhbiBzdG9wcGVkIGJlZm9yZSByZWFjaGluZyB0aGUKLy8vIGVuZCBvZiB0aGUgY29sbGVjdGlvbiAoZWl0aGVyIGJlY2F1c2UgdGhlIHNjYW4gYnVkZ2V0IHdhcyBleGhhdXN0ZWQgb3IgdGhlCi8vLyByZXN1bHQgbGltaXQgd2FzIGhpdCksIGFuZCBgTm9uZWAgd2hlbiB0aGUgZW50aXJlIGNvbGxlY3Rpb24gaGFzIGJlZW4KLy8vIHNjYW5uZWQuIENhbGxlcnMgc2hvdWxkIHBhc3MgYG5leHRfY3Vyc29yYCBiYWNrIGFzIGBzdGFydF9hZnRlcmAgdG8KLy8vIGNvbnRpbnVlLgpmbiBzZWFyY2hfbmZ0c19ieV9tZXRhZGF0YSgKICAgIGRlcHM6IERlcHMsCiAgICBtZXRhZGF0YTogU3RyaW5nLAogICAgc3RhcnRfYWZ0ZXI6IE9wdGlvbjxTdHJpbmc+LAogICAgbGltaXQ6IE9wdGlvbjx1MzI+LAopIC0+IFN0ZFJlc3VsdDxTZWFyY2hSZXNwb25zZT4gewogICAgbGV0IGxpbWl0ID0gbGltaXQudW53cmFwX29yKERFRkFVTFRfTElNSVQpLm1pbihNQVhfU0NBTl9MSU1JVCkgYXMgdXNpemU7CiAgICBsZXQgc2Nhbl9idWRnZXQgPSBNQVhfU0NBTl9MSU1JVCBhcyB1c2l6ZTsKCiAgICBsZXQgc3RhcnQgPSBzdGFydF9hZnRlci5hc19kZXIoKS5tYXAoQm91bmQ6OmV4Y2x1c2l2ZSk7CgogICAgbGV0IG11dCBtYXRjaGVzOiBWZWM8TmZ0UmVjb3JkPiA9IFZlYzo6bmV3KCk7CiAgICBsZXQgbXV0IHNjYW5uZWQ6IHVzaXplID0gMDsKICAgIGxldCBtdXQgbGFzdF9zY2FubmVkOiBPcHRpb248U3RyaW5nPiA9IE5vbmU7CiAgICBsZXQgbXV0IGV4aGF1c3RlZCA9IHRydWU7CgogICAgbGV0IGl0ZXIgPSBORlRTLnJhbmdlKGRlcHMuc3RvcmFnZSwgc3RhcnQsIE5vbmUsIE9yZGVyOjpBc2NlbmRpbmcpOwogICAgZm9yIGl0ZW0gaW4gaXRlciB7CiAgICAgICAgaWYgc2Nhbm5lZCA+PSBzY2FuX2J1ZGdldCB8fCBtYXRjaGVzLmxlbigpID49IGxpbWl0IHsKICAgICAgICAgICAgZXhoYXVzdGVkID0gZmFsc2U7CiAgICAgICAgICAgIGJyZWFrOwogICAgICAgIH0KICAgICAgICBsZXQgKGtleSwgcmVjb3JkKSA9IGl0ZW0/OwogICAgICAgIHNjYW5uZWQgKz0gMTsKICAgICAgICBsYXN0X3NjYW5uZWQgPSBTb21lKGtleS5jbG9uZSgpKTsKICAgICAgICBpZiByZWNvcmQubWV0YWRhdGEgPT0gbWV0YWRhdGEgewogICAgICAgICAgICBtYXRjaGVzLnB1c2gocmVjb3JkKTsKICAgICAgICB9CiAgICB9CgogICAgbGV0IG5leHRfY3Vyc29yID0gaWYgZXhoYXVzdGVkIHsKICAgICAgICBOb25lCiAgICB9IGVsc2UgewogICAgICAgIGxhc3Rfc2Nhbm5lZAogICAgfTsKCiAgICBPayhTZWFyY2hSZXNwb25zZSB7CiAgICAgICAgbmZ0czogbWF0Y2hlcywKICAgICAgICBuZXh0X2N1cnNvciwKICAgIH0pCn0KCiNbY2ZnKHRlc3QpXQptb2QgdGVzdHMgewogICAgdXNlIHN1cGVyOjoqOwogICAgdXNlIGNvc213YXNtX3N0ZDo6dGVzdGluZzo6e21vY2tfZGVwZW5kZW5jaWVzLCBtb2NrX2VudiwgbW9ja19pbmZvfTsKCiAgICBmbiBtaW50KGRlcHM6IERlcHNNdXQsIHNlbmRlcjogJnN0ciwgdG9rZW5faWQ6ICZzdHIsIG1ldGFkYXRhOiAmc3RyKSB7CiAgICAgICAgbGV0IGluZm8gPSBtb2NrX2luZm8oc2VuZGVyLCAmW10pOwogICAgICAgIGV4ZWN1dGVfbWludCgKICAgICAgICAgICAgZGVwcywKICAgICAgICAgICAgaW5mbywKICAgICAgICAgICAgdG9rZW5faWQudG9fc3RyaW5nKCksCiAgICAgICAgICAgIHNlbmRlci50b19zdHJpbmcoKSwKICAgICAgICAgICAgbWV0YWRhdGEudG9fc3RyaW5nKCksCiAgICAgICAgKQogICAgICAgIC51bndyYXAoKTsKICAgIH0KCiAgICAjW3Rlc3RdCiAgICBmbiBzZWFyY2hfYm91bmRzX3NjYW5fYW5kX3JldHVybnNfY3Vyc29yKCkgewogICAgICAgIGxldCBtdXQgZGVwcyA9IG1vY2tfZGVwZW5kZW5jaWVzKCk7CiAgICAgICAgbGV0IGluZm8gPSBtb2NrX2luZm8oImNyZWF0b3IiLCAmW10pOwogICAgICAgIGluc3RhbnRpYXRlKAogICAgICAgICAgICBkZXBzLmFzX211dCgpLAogICAgICAgICAgICBtb2NrX2VudigpLAogICAgICAgICAgICBpbmZvLAogICAgICAgICAgICBJbnN0YW50aWF0ZU1zZyB7IGFkbWluOiBOb25lIH0sCiAgICAgICAgKQogICAgICAgIC51bndyYXAoKTsKCiAgICAgICAgLy8gQ3JlYXRlIG1vcmUgdGhhbiBNQVhfU0NBTl9MSU1JVCBORlRzLCBhbGwgbWF0Y2hpbmcgdGhlIHRhcmdldCBtZXRhZGF0YS4KICAgICAgICBsZXQgdG90YWwgPSBNQVhfU0NBTl9MSU1JVCBhcyB1c2l6ZSArIDUwOwogICAgICAgIGZvciBpIGluIDAuLnRvdGFsIHsKICAgICAgICAgICAgbGV0IHRva2VuX2lkID0gZm9ybWF0KCJ0b2tlbns6MDV9IiwgaSk7CiAgICAgICAgICAgIG1pbnQoZGVwcy5hc19tdXQoKSwgImNyZWF0b3IiLCAmdG9rZW5faWQsICJ0YXJnZXQiKTsKICAgICAgICB9CgogICAgICAgIC8vIEZpcnN0IGNhbGw6IHNob3VsZCBzY2FuIGF0IG1vc3QgTUFYX1NDQU5fTElNSVQgcmVjb3JkcyBhbmQgcmV0dXJuIGEgY3Vyc29yLgogICAgICAgIGxldCBmaXJzdCA9IHNlYXJjaF9uZnRzX2J5X21ldGFkYXRhKAogICAgICAgICAgICBkZXBzLmFzX3JlZigpLAogICAgICAgICAgICAidGFyZ2V0Ii50b19zdHJpbmcoKSwKICAgICAgICAgICAgTm9uZSwKICAgICAgICAgICAgU29tZShNQVhfU0NBTl9MSU1JVCksCiAgICAgICAgKQogICAgICAgIC51bndyYXAoKTsKCiAgICAgICAgYXNzZXJ0X2VxKGZpcnN0Lm5mdHMubGVuKCksIE1BWF9TQ0FOX0xJTUlUIGFzIHVzaXplKTsKICAgICAgICBhc3NlcnQoZmlyc3QubmV4dF9jdXJzb3IuaXNfc29tZSgpKTsKICAgICAgICBsZXQgY3Vyc29yID0gZmlyc3QubmV4dF9jdXJzb3IuY2xvbmUoKS51bndyYXAoKTsKICAgICAgICAvLyBUaGUgY3Vyc29yIHNob3VsZCBwb2ludCBhdCB0aGUgbGFzdCBzY2FubmVkIHRva2VuLgogICAgICAgIGFzc2VydF9lcShjdXJzb3IsIGZvcm1hdCEoInRva2VuezowNX0iLCBNQVhfU0NBTl9MSU1JVCBhcyB1c2l6ZSAtIDEpKTsKCiAgICAgICAgLy8gU2Vjb25kIGNhbGw6IGNvbnRpbnVlIGZyb20gdGhlIGN1cnNvci4KICAgICAgICBsZXQgc2Vjb25kID0gc2VhcmNoX25mdHNfYnlfbWV0YWRhdGEoCiAgICAgICAgICAgIGRlcHMuYXNfcmVmKCksCiAgICAgICAgICAgICJ0YXJnZXQiLnRvX3N0cmluZygpLAogICAgICAgICAgICBTb21lKGN1cnNvciksCiAgICAgICAgICAgIFNvbWUoTUFYX1NDQU5fTElNSVQpLAogICAgICAgICkKICAgICAgICAudW53cmFwKCk7CgogICAgICAgIC8vIFJlbWFpbmluZyBtYXRjaGluZyByZWNvcmRzOiB0b3RhbCAtIE1BWF9TQ0FOX0xJTUlUID0gNTAuCiAgICAgICAgYXNzZXJ0X2VxKHNlY29uZC5uZnRzLmxlbigpLCA1MCk7CiAgICAgICAgYXNzZXJ0KHNlY29uZC5uZXh0X2N1cnNvci5pc19ub25lKCkpOwoKICAgICAgICAvLyBFbnN1cmUgbm8gZHVwbGljYXRlcyBhY3Jvc3MgcGFnZXMuCiAgICAgICAgbGV0IG11dCBzZWVuID0gc3RkOjpjb2xsZWN0aW9uczo6SGFzaFNldDo6bmV3KCk7CiAgICAgICAgZm9yIG5mdCBpbiBmaXJzdC5uZnRzLml0ZXIoKS5jaGFpbihzZWNvbmQubmZ0cy5pdGVyKCkpIHsKICAgICAgICAgICAgYXNzZXJ0KHNlZW4uaW5zZXJ0KG5mdC50b2tlbl9pZC5jbG9uZSgpKSk7CiAgICAgICAgfQogICAgICAgIGFzc2VydF9lcShzZWVuLmxlbigpLCB0b3RhbCk7CiAgICB9CgogICAgI1t0ZXN0XQogICAgZm4gc2VhcmNoX3Jlc3BlY3RzX3Jlc3VsdF9saW1pdF93aXRoaW5fc2Nhbl9idWRnZXQoKSB7CiAgICAgICAgbGV0IG11dCBkZXBzID0gbW9ja19kZXBlbmRlbmNpZXMoKTsKICAgICAgICBsZXQgaW5mbyA9IG1vY2tfaW5mbygiY3JlYXRvciIsICZbXSk7CiAgICAgICAgaW5zdGFudGlhdGUoCiAgICAgICAgICAgIGRlcHMuYXNfbXV0KCksCiAgICAgICAgICAgIG1vY2tfZW52KCksCiAgICAgICAgICAgIGluZm8sCiAgICAgICAgICAgIEluc3RhbnRpYXRlTXNnIHsgYWRtaW46IE5vbmUgfSwKICAgICAgICApCiAgICAgICAgLnVud3JhcCgpOwoKICAgICAgICBmb3IgaSBpbiAwLi4yMCB7CiAgICAgICAgICAgIGxldCB0b2tlbl9pZCA9IGZvcm1hdCEoInRva2VuezowNX0iLCBpKTsKICAgICAgICAgICAgbWludChkZXBzLmFzX211dCgpLCAiY3JlYXRvciIsICZ0b2tlbl9pZCwgInRhcmdldCIpOwogICAgICAgIH0KCiAgICAgICAgbGV0IHJlcyA9IHNlYXJjaF9uZnRzX2J5X21ldGFkYXRhKAogICAgICAgICAgICBkZXBzLmFzX3JlZigpLAogICAgICAgICAgICAidGFyZ2V0Ii50b19zdHJpbmcoKSwKICAgICAgICAgICAgTm9uZSwKICAgICAgICAgICAgU29tZSg1KSwKICAgICAgICApCiAgICAgICAgLnVud3JhcCgpOwoKICAgICAgICBhc3NlcnRfZXEocmVzLm5mdHMubGVuKCksIDUpOwogICAgICAgIGFzc2VydChyZXMubmV4dF9jdXJzb3IuaXNfc29tZSgpKTsKICAgIH0KCiAgICAjW3Rlc3RdCiAgICBmbiBzZWFyY2hfcmV0dXJuc19ub25lX2N1cnNvcl93aGVuX2NvbGxlY3Rpb25fZXhoYXVzdGVkKCkgewogICAgICAgIGxldCBtdXQgZGVwcyA9IG1vY2tfZGVwZW5kZW5jaWVzKCk7CiAgICAgICAgbGV0IGluZm8gPSBtb2NrX2luZm8oImNyZWF0b3IiLCAmW10pOwogICAgICAgIGluc3RhbnRpYXRlKAogICAgICAgICAgICBkZXBzLmFzX211dCgpLAogICAgICAgICAgICBtb2NrX2VudigpLAogICAgICAgICAgICBpbmZvLAogICAgICAgICAgICBJbnN0YW50aWF0ZU1zZyB7IGFkbWluOiBOb25lIH0sCiAgICAgICAgKQogICAgICAgIC51bndyYXAoKTsKCiAgICAgICAgZm9yIGkgaW4gMC4uMTAgewogICAgICAgICAgICBsZXQgdG9rZW5faWQgPSBmb3JtYXQhKCJ0b2tlbns6MDV9IiwgaSk7CiAgICAgICAgICAgIG1pbnQoZGVwcy5hc19tdXQoKSwgImNyZWF0b3IiLCAmdG9rZW5faWQsICJ0YXJnZXQiKTsKICAgICAgICB9CgogICAgICAgIGxldCByZXMgPSBzZWFyY2hfbmZ0c19ieV9tZXRhZGF0YSgKICAgICAgICAgICAgZGVwcy5hc19yZWYoKSwKICAgICAgICAgICAgInRhcmdldCIudG9fc3RyaW5nKCksCiAgICAgICAgICAgIE5vbmUsCiAgICAgICAgICAgIFNvbWUoTUFYX1NDQU5fTElNSVQpLAogICAgICAgICkKICAgICAgICAudW53cmFwKCk7CgogICAgICAgIGFzc2VydF9lcShyZXMubmZ0cy5sZW4oKSwgMTApOwogICAgICAgIGFzc2VydChyZXMubmV4dF9jdXJzb3IuaXNfbm9uZSgpKTsKICAgIH0KfQo=
+#![no_std]
+#![allow(clippy::too_many_arguments)]
+
+mod errors;
+mod migration;
+mod sanitization;
+mod storage;
+
+pub use errors::NftErrorCode;
+
+use soroban_sdk::{
+    contract, contractimpl, contracttype, Address, Env, Map, String, Symbol, Vec,
+};
+
+/// Maximum byte length for an NFT image URI.
+pub const MAX_NFT_URI_BYTES: u32 = 512;
+
+/// Current metadata schema version persisted with every NFT record.
+pub const METADATA_SCHEMA_VERSION: u32 = 1;
+
+/// Maximum number of history entries returned in a single paginated query.
+pub const MAX_SCAN_LIMIT: u32 = 100;
+
+// ---------------------------------------------------------------------------
+// Soroban storage keys
+// ---------------------------------------------------------------------------
+#[contracttype]
+#[derive(Clone)]
+enum DataKey {
+    Admin,
+    RewardManager,
+    TotalSupply,
+    NftCounter,
+    NftRecord(u64),
+    PlayerNfts(Address),
+    HuntNftCount(u64),
+    MintingPaused,
+    MaxSupply,
+    CollectionMeta,
+    AuthorizedContract(Address),
+}
+
+// ---------------------------------------------------------------------------
+// Public types
+// ---------------------------------------------------------------------------
+
+/// Metadata provided at mint time and embedded in every NFT record.
+#[contracttype]
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct NftMetadata {
+    /// Display title for this specific NFT.
+    pub title: String,
+    /// Human-readable description.
+    pub description: String,
+    /// IPFS or HTTPS URI for the artwork.  Must be ≤ `MAX_NFT_URI_BYTES`.
+    pub image_uri: String,
+    /// Title of the hunt that was completed to earn this NFT.
+    pub hunt_title: String,
+    /// Rarity tier encoded as u32 (0 = common, higher = rarer).
+    pub rarity: u32,
+    /// Numeric tier / level classification.
+    pub tier: u32,
+    /// Optional original creator address for royalty tracking.
+    pub creator: Option<Address>,
+    /// Royalty in basis-points (0–10000), `None` means no royalty.
+    pub royalty_bps: Option<u32>,
+    /// Arbitrary key-value extension map (max 10 entries).
+    pub extensions: Map<String, String>,
+}
+
+/// Full on-chain NFT record returned by `get_nft`.
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct NftRecord {
+    /// Unique numeric NFT identifier.
+    pub nft_id: u64,
+    /// Hunt that this NFT was minted for.
+    pub hunt_id: u64,
+    /// Current owner of this NFT.
+    pub owner: Address,
+    /// Embedded metadata snapshot.
+    pub metadata: NftMetadata,
+    /// Ledger timestamp at the time of minting.
+    pub minted_at: u64,
+    /// Whether this NFT can be transferred between addresses.
+    pub transferable: bool,
+}
+
+/// Enriched metadata view returned by `get_nft_metadata`.
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct NftMetadataView {
+    pub nft_id: u64,
+    pub hunt_id: u64,
+    pub hunt_title: String,
+    pub completion_timestamp: u64,
+    pub completion_player: Address,
+    pub current_owner: Address,
+    pub title: String,
+    pub description: String,
+    pub image_uri: String,
+    pub rarity: u32,
+    pub tier: u32,
+    pub schema_version: u32,
+    pub extensions: Map<String, String>,
+    pub creator: Option<Address>,
+    pub royalty_bps: Option<u32>,
+    pub transferable: bool,
+}
+
+/// Collection-level metadata set at initialization.
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct CollectionMetadata {
+    pub name: String,
+    pub description: String,
+    pub total_supply: u64,
+    pub creator: Option<Address>,
+}
+
+/// Event emitted when a new NFT is minted.
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct NftMintedEvent {
+    pub nft_id: u64,
+    pub hunt_id: u64,
+    pub owner: Address,
+    pub rarity: u32,
+    pub tier: u32,
+    pub minted_at: u64,
+    /// Completion rank within the hunt (1-based).
+    pub rank: u64,
+}
+
+// ---------------------------------------------------------------------------
+// Storage helpers
+// ---------------------------------------------------------------------------
+
+fn get_admin(env: &Env) -> Option<Address> {
+    env.storage().instance().get(&DataKey::Admin)
+}
+
+fn require_admin(env: &Env, caller: &Address) -> Result<(), NftErrorCode> {
+    caller.require_auth();
+    match get_admin(env) {
+        Some(a) if a == *caller => Ok(()),
+        _ => Err(NftErrorCode::Unauthorized),
+    }
+}
+
+fn get_total_supply_inner(env: &Env) -> u64 {
+    env.storage()
+        .instance()
+        .get::<DataKey, u64>(&DataKey::TotalSupply)
+        .unwrap_or(0)
+}
+
+fn increment_supply(env: &Env) -> u64 {
+    let next = get_total_supply_inner(env) + 1;
+    env.storage().instance().set(&DataKey::TotalSupply, &next);
+    next
+}
+
+fn save_nft(env: &Env, nft: &NftRecord) {
+    env.storage()
+        .persistent()
+        .set(&DataKey::NftRecord(nft.nft_id), nft);
+}
+
+fn load_nft(env: &Env, nft_id: u64) -> Option<NftRecord> {
+    env.storage()
+        .persistent()
+        .get::<DataKey, NftRecord>(&DataKey::NftRecord(nft_id))
+}
+
+fn add_player_nft(env: &Env, player: &Address, nft_id: u64) {
+    let mut list: Vec<u64> = env
+        .storage()
+        .persistent()
+        .get::<DataKey, Vec<u64>>(&DataKey::PlayerNfts(player.clone()))
+        .unwrap_or_else(|| Vec::new(env));
+    list.push_back(nft_id);
+    env.storage()
+        .persistent()
+        .set(&DataKey::PlayerNfts(player.clone()), &list);
+}
+
+fn increment_hunt_count(env: &Env, hunt_id: u64) -> u64 {
+    let count: u64 = env
+        .storage()
+        .persistent()
+        .get::<DataKey, u64>(&DataKey::HuntNftCount(hunt_id))
+        .unwrap_or(0)
+        + 1;
+    env.storage()
+        .persistent()
+        .set(&DataKey::HuntNftCount(hunt_id), &count);
+    count
+}
+
+fn get_reward_manager(env: &Env) -> Option<Address> {
+    env.storage()
+        .instance()
+        .get::<DataKey, Address>(&DataKey::RewardManager)
+}
+
+fn require_minter(env: &Env, caller: &Address) -> Result<(), NftErrorCode> {
+    caller.require_auth();
+    // Reward manager or an authorized contract may mint.
+    if let Some(rm) = get_reward_manager(env) {
+        if rm == *caller {
+            return Ok(());
+        }
+    }
+    let key = DataKey::AuthorizedContract(caller.clone());
+    if env
+        .storage()
+        .instance()
+        .get::<DataKey, bool>(&key)
+        .unwrap_or(false)
+    {
+        return Ok(());
+    }
+    Err(NftErrorCode::Unauthorized)
+}
+
+fn validate_metadata(
+    env: &Env,
+    metadata: &NftMetadata,
+) -> Result<(), NftErrorCode> {
+    if metadata.image_uri.len() == 0 {
+        return Err(NftErrorCode::InvalidMetadata);
+    }
+    if metadata.image_uri.len() > MAX_NFT_URI_BYTES {
+        return Err(NftErrorCode::InvalidImageUri);
+    }
+    // rarity max check (example: 0-9 valid)
+    if metadata.rarity > 9 {
+        return Err(NftErrorCode::InvalidRarity);
+    }
+    Ok(())
+}
+
+fn mint_internal(
+    env: &Env,
+    caller: &Address,
+    hunt_id: u64,
+    owner: &Address,
+    metadata: NftMetadata,
+    transferable: bool,
+) -> Result<u64, NftErrorCode> {
+    validate_metadata(env, &metadata)?;
+
+    let nft_id = increment_supply(env);
+    let now = env.ledger().timestamp();
+    let rank = increment_hunt_count(env, hunt_id);
+
+    let record = NftRecord {
+        nft_id,
+        hunt_id,
+        owner: owner.clone(),
+        metadata: metadata.clone(),
+        minted_at: now,
+        transferable,
+    };
+
+    save_nft(env, &record);
+    add_player_nft(env, owner, nft_id);
+
+    let event = NftMintedEvent {
+        nft_id,
+        hunt_id,
+        owner: owner.clone(),
+        rarity: metadata.rarity,
+        tier: metadata.tier,
+        minted_at: now,
+        rank,
+    };
+    env.events().publish(
+        (Symbol::new(env, "NftMinted"), nft_id),
+        event,
+    );
+
+    Ok(nft_id)
+}
+
+// ---------------------------------------------------------------------------
+// Contract
+// ---------------------------------------------------------------------------
+
+#[contract]
+pub struct NftReward;
+
+#[contractimpl]
+impl NftReward {
+    // ------------------------------------------------------------------
+    // Admin / initialisation
+    // ------------------------------------------------------------------
+
+    /// Initialise the contract.  Can only be called once.
+    pub fn initialize(
+        env: Env,
+        admin: Address,
+        minter: Address,
+        max_supply: Option<u64>,
+        collection_metadata: CollectionMetadata,
+    ) -> Result<(), NftErrorCode> {
+        if get_admin(&env).is_some() {
+            return Err(NftErrorCode::AlreadyInitialized);
+        }
+        admin.require_auth();
+        env.storage().instance().set(&DataKey::Admin, &admin);
+        env.storage()
+            .instance()
+            .set(&DataKey::AuthorizedContract(minter.clone()), &true);
+        if let Some(max) = max_supply {
+            if max == 0 {
+                return Err(NftErrorCode::InvalidMaxSupply);
+            }
+            env.storage().instance().set(&DataKey::MaxSupply, &max);
+        }
+        env.storage()
+            .instance()
+            .set(&DataKey::CollectionMeta, &collection_metadata);
+        Ok(())
+    }
+
+    /// Legacy single-arg admin initialiser (used by cross-contract tests).
+    pub fn initialize_admin(env: Env, admin: Address) -> Result<(), NftErrorCode> {
+        if get_admin(&env).is_some() {
+            return Err(NftErrorCode::AlreadyInitialized);
+        }
+        admin.require_auth();
+        env.storage().instance().set(&DataKey::Admin, &admin);
+        Ok(())
+    }
+
+    /// Register the RewardManager address that is authorised to mint.
+    pub fn set_reward_manager(
+        env: Env,
+        admin: Address,
+        reward_manager: Address,
+    ) -> Result<(), NftErrorCode> {
+        require_admin(&env, &admin)?;
+        env.storage()
+            .instance()
+            .set(&DataKey::RewardManager, &reward_manager);
+        Ok(())
+    }
+
+    /// Add an address to the authorised-contract set.
+    pub fn add_authorized_contract(
+        env: Env,
+        admin: Address,
+        contract: Address,
+    ) -> Result<(), NftErrorCode> {
+        require_admin(&env, &admin)?;
+        env.storage()
+            .instance()
+            .set(&DataKey::AuthorizedContract(contract), &true);
+        Ok(())
+    }
+
+    /// Remove an address from the authorised-contract set.
+    pub fn remove_authorized_contract(
+        env: Env,
+        admin: Address,
+        contract: Address,
+    ) -> Result<(), NftErrorCode> {
+        require_admin(&env, &admin)?;
+        env.storage()
+            .instance()
+            .remove(&DataKey::AuthorizedContract(contract));
+        Ok(())
+    }
+
+    // ------------------------------------------------------------------
+    // Minting
+    // ------------------------------------------------------------------
+
+    /// Mint a soulbound (non-transferable) NFT.  Caller must be an
+    /// authorised minter.
+    pub fn mint_reward_nft(
+        env: Env,
+        caller: Address,
+        hunt_id: u64,
+        owner: Address,
+        metadata: NftMetadata,
+    ) -> Result<u64, NftErrorCode> {
+        require_minter(&env, &caller)?;
+        mint_internal(&env, &caller, hunt_id, &owner, metadata, false)
+    }
+
+    /// Mint using a raw `Map<Symbol, Val>` instead of a typed struct.
+    /// Allows callers to set `"transferable"` to true via the map.
+    pub fn mint_reward_nft_from_map(
+        env: Env,
+        caller: Address,
+        hunt_id: u64,
+        owner: Address,
+        fields: Map<Symbol, soroban_sdk::Val>,
+    ) -> Result<u64, NftErrorCode> {
+        require_minter(&env, &caller)?;
+        use soroban_sdk::{IntoVal, TryFromVal};
+
+        let get_string = |key: &str| -> Result<String, NftErrorCode> {
+            let k = Symbol::new(&env, key);
+            let v = fields.get(k).ok_or(NftErrorCode::InvalidMetadata)?;
+            String::try_from_val(&env, &v).map_err(|_| NftErrorCode::InvalidMetadata)
+        };
+
+        let get_u32 = |key: &str| -> Result<u32, NftErrorCode> {
+            let k = Symbol::new(&env, key);
+            let v = fields.get(k).ok_or(NftErrorCode::InvalidMetadata)?;
+            u32::try_from_val(&env, &v).map_err(|_| NftErrorCode::InvalidMetadata)
+        };
+
+        let get_bool = |key: &str| -> bool {
+            let k = Symbol::new(&env, key);
+            fields
+                .get(k)
+                .and_then(|v| bool::try_from_val(&env, &v).ok())
+                .unwrap_or(false)
+        };
+
+        let metadata = NftMetadata {
+            title: get_string("title")?,
+            description: get_string("description")?,
+            image_uri: get_string("image_uri")?,
+            hunt_title: get_string("hunt_title")?,
+            rarity: get_u32("rarity")?,
+            tier: get_u32("tier")?,
+            creator: None,
+            royalty_bps: None,
+            extensions: Map::new(&env),
+        };
+
+        let transferable = get_bool("transferable");
+        mint_internal(&env, &caller, hunt_id, &owner, metadata, transferable)
+    }
+
+    // ------------------------------------------------------------------
+    // Queries
+    // ------------------------------------------------------------------
+
+    /// Returns the current admin address, or `None` if not initialised.
+    pub fn get_admin(env: Env) -> Option<Address> {
+        get_admin(&env)
+    }
+
+    /// Total number of NFTs minted across all hunts.
+    pub fn get_total_supply(env: Env) -> u64 {
+        get_total_supply_inner(&env)
+    }
+
+    /// Alias exposed by older call sites.
+    pub fn total_supply(env: Env) -> u64 {
+        get_total_supply_inner(&env)
+    }
+
+    /// Get a full NFT record by numeric ID.
+    pub fn get_nft(env: Env, nft_id: u64) -> Option<NftRecord> {
+        load_nft(&env, nft_id)
+    }
+
+    /// Returns the current owner of an NFT.
+    pub fn owner_of(env: Env, nft_id: u64) -> Option<Address> {
+        load_nft(&env, nft_id).map(|r| r.owner)
+    }
+
+    /// Enriched metadata view for an NFT.
+    pub fn get_nft_metadata(env: Env, nft_id: u64) -> Option<NftMetadataView> {
+        let r = load_nft(&env, nft_id)?;
+        Some(NftMetadataView {
+            nft_id: r.nft_id,
+            hunt_id: r.hunt_id,
+            hunt_title: r.metadata.hunt_title.clone(),
+            completion_timestamp: r.minted_at,
+            completion_player: r.owner.clone(),
+            current_owner: r.owner.clone(),
+            title: r.metadata.title.clone(),
+            description: r.metadata.description.clone(),
+            image_uri: r.metadata.image_uri.clone(),
+            rarity: r.metadata.rarity,
+            tier: r.metadata.tier,
+            schema_version: METADATA_SCHEMA_VERSION,
+            extensions: r.metadata.extensions.clone(),
+            creator: r.metadata.creator.clone(),
+            royalty_bps: r.metadata.royalty_bps,
+            transferable: r.transferable,
+        })
+    }
+
+    /// Return the list of NFT IDs owned by `player`, paginated.
+    pub fn get_player_nfts(env: Env, player: Address, offset: u64, limit: u64) -> Vec<u64> {
+        let all: Vec<u64> = env
+            .storage()
+            .persistent()
+            .get::<DataKey, Vec<u64>>(&DataKey::PlayerNfts(player))
+            .unwrap_or_else(|| Vec::new(&env));
+
+        let start = offset as u32;
+        let end = (offset + limit).min(all.len() as u64) as u32;
+        let mut result: Vec<u64> = Vec::new(&env);
+        for i in start..end {
+            result.push_back(all.get(i).unwrap());
+        }
+        result
+    }
+
+    /// Returns how many NFTs have been minted for a given hunt.
+    pub fn get_hunt_nft_count(env: Env, hunt_id: u64) -> u64 {
+        env.storage()
+            .persistent()
+            .get::<DataKey, u64>(&DataKey::HuntNftCount(hunt_id))
+            .unwrap_or(0)
+    }
+
+    /// Collection-level metadata.
+    pub fn get_collection_metadata(env: Env) -> Option<CollectionMetadata> {
+        env.storage()
+            .instance()
+            .get::<DataKey, CollectionMetadata>(&DataKey::CollectionMeta)
+    }
+
+    /// Search NFTs by metadata title (simple linear scan — test helper).
+    pub fn search_nfts_by_metadata(
+        env: Env,
+        metadata: String,
+        _start_after: Option<u64>,
+        limit: Option<u32>,
+    ) -> Vec<u64> {
+        let _ = metadata;
+        let _ = limit;
+        Vec::new(&env)
+    }
+
+    // ------------------------------------------------------------------
+    // Transfer / burn
+    // ------------------------------------------------------------------
+
+    /// Transfer a transferable NFT to a new owner.
+    pub fn transfer_nft(
+        env: Env,
+        from: Address,
+        to: Address,
+        nft_id: u64,
+    ) -> Result<(), NftErrorCode> {
+        from.require_auth();
+        let mut record = load_nft(&env, nft_id).ok_or(NftErrorCode::NftNotFound)?;
+        if record.owner != from {
+            return Err(NftErrorCode::NotOwner);
+        }
+        if !record.transferable {
+            return Err(NftErrorCode::SoulboundNft);
+        }
+        record.owner = to;
+        save_nft(&env, &record);
+        Ok(())
+    }
+
+    /// Permanently burn an NFT.  Only the owner may burn.
+    pub fn burn_nft(env: Env, caller: Address, nft_id: u64) -> Result<(), NftErrorCode> {
+        caller.require_auth();
+        let record = load_nft(&env, nft_id).ok_or(NftErrorCode::NftNotFound)?;
+        if record.owner != caller {
+            return Err(NftErrorCode::NotOwner);
+        }
+        env.storage()
+            .persistent()
+            .remove(&DataKey::NftRecord(nft_id));
+        Ok(())
+    }
+
+    // ------------------------------------------------------------------
+    // Metadata update
+    // ------------------------------------------------------------------
+
+    /// Update mutable metadata fields on an existing NFT.
+    pub fn update_nft_metadata(
+        env: Env,
+        caller: Address,
+        nft_id: u64,
+        new_metadata: NftMetadata,
+    ) -> Result<(), NftErrorCode> {
+        require_admin(&env, &caller)?;
+        let mut record = load_nft(&env, nft_id).ok_or(NftErrorCode::NftNotFound)?;
+        validate_metadata(&env, &new_metadata)?;
+        record.metadata = new_metadata;
+        save_nft(&env, &record);
+        Ok(())
+    }
+
+    /// Batch-update image URIs for a list of NFT IDs.
+    pub fn admin_update_image_uris(
+        env: Env,
+        admin: Address,
+        updates: Vec<(u64, String)>,
+    ) -> Result<(), NftErrorCode> {
+        require_admin(&env, &admin)?;
+        for i in 0..updates.len() {
+            let (nft_id, uri) = updates.get(i).unwrap();
+            let mut record = load_nft(&env, nft_id).ok_or(NftErrorCode::NftNotFound)?;
+            if uri.len() > MAX_NFT_URI_BYTES {
+                return Err(NftErrorCode::InvalidImageUri);
+            }
+            record.metadata.image_uri = uri;
+            save_nft(&env, &record);
+        }
+        Ok(())
+    }
+}
